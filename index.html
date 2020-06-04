@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         #page_wrapper {
             margin: 20px 0;
@@ -25,6 +26,10 @@
             padding: 10px;
             margin: 0;
             width: fit-content;
+        }
+        @media (max-width: 600px) {
+            body { font-size: 11px; }
+            ol { padding-left: 30px; }
         }
         /* shove the prompt out of the way so you can see the debug output */
         .qc-cmp2-container > div {
