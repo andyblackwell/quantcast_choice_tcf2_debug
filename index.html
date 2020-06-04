@@ -4,10 +4,11 @@
 </head>
 <body>
     <h1>Quantcast Choice TCF 2.0 debug page</h1>
-
-    <div id="messages">
-        <p>debug output:</p>
-    </div>
+    
+    <p>debug output:</p>
+    <ol id="messages">
+        
+    </ol>
   <!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
   <script type="text/javascript" async=true>
   (function() {
@@ -177,15 +178,14 @@
     var $messages = jQuery('#messages');
     var tcfapi_interval = setInterval(function(){
       window.__tcfapi('ping', 2, function(pingData){
-        $messages.append('<div>__tcfapi("ping") output <pre>' + JSON.stringify({pingData:pingData}, null, 4) + '</pre></div>');
+        $messages.append('<li><p>__tcfapi("ping") output</p> <pre>' + JSON.stringify({pingData:pingData}, null, 4) + '</pre></li>');
         if (pingData.cmpLoaded) {
           clearInterval(tcfapi_interval);
         }
       });
     }, 100);
     window.__tcfapi('addEventListener', 2, function(tcfData, success){
-      console.log('TESTING addEventListener', {tcfData, success});
-      $messages.append('<div>__tcfapi("addEventListener") output <pre>' + JSON.stringify({tcfData:tcfData, success:success}, null, 4) + '</pre></div>');
+      $messages.append('<li><p>__tcfapi("addEventListener") output</p> <pre>' + JSON.stringify({tcfData:tcfData, success:success}, null, 4) + '</pre></li>');
     });
   })()
   </script>
