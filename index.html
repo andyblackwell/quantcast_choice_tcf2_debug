@@ -9,12 +9,13 @@
             margin-bottom: 20px;
         }
         #messages p {
+            display: table-cell;
             font-weight: bold;
             margin: 0 0 10px 0;
             cursor: pointer;
         }
         #messages pre {
-            display: inline-block;
+            display: table-cell;
             background: rgba(0,0,0,.05);
             padding: 10px;
             margin: 0;
@@ -23,9 +24,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1>Quantcast Choice TCF 2.0 debug page</h1>
+    <h1>Quantcast Choice TCF 2.0 Testing</h1>
     
-    <h3>Debug Output:</h3>
+    <h3>Debug Messages:</h3>
     <ol id="messages">
         
     </ol>
@@ -201,7 +202,7 @@
     var $messages = jQuery('#messages');
     var ping_check = function(){
       window.__tcfapi('ping', 2, function(pingData){
-        $messages.append('<li><p>__tcfapi("ping") output</p> <pre>' + JSON.stringify({pingData:pingData}, null, 4) + '</pre></li>');
+        $messages.append('<li><p>__tcfapi("ping") response</p> <pre>' + JSON.stringify({pingData:pingData}, null, 4) + '</pre></li>');
         if (pingData.cmpLoaded) {
           clearInterval(tcfapi_interval);
         }
@@ -210,7 +211,7 @@
     var tcfapi_interval = setInterval(ping_check, 100);
     ping_check();
     window.__tcfapi('addEventListener', 2, function(tcfData, success){
-      $messages.append('<li><p>__tcfapi("addEventListener") output</p> <pre>' + JSON.stringify({tcfData:tcfData, success:success}, null, 4) + '</pre></li>');
+      $messages.append('<li><p>__tcfapi("addEventListener") response</p> <pre>' + JSON.stringify({tcfData:tcfData, success:success}, null, 4) + '</pre></li>');
     });
   })()
   </script>
