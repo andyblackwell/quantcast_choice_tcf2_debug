@@ -8,6 +8,7 @@
         #messages p {
             font-weight: bold;
             margin: 0;
+            cursor: pointer;
         }
         #messages pre {
             display: inline-block;
@@ -191,6 +192,9 @@
 
   <script>
   (function(){
+    jQuery(document).on('click', '#messages li p', function(){
+        jQuery(this).parent().find('pre').slideToggle();
+    });
     var $messages = jQuery('#messages');
     var ping_check = function(){
       window.__tcfapi('ping', 2, function(pingData){
