@@ -176,14 +176,16 @@
   <script>
   (function(){
     var $messages = jQuery('#messages');
-    var tcfapi_interval = setInterval(function(){
+    var ping_check = function(){
       window.__tcfapi('ping', 2, function(pingData){
         $messages.append('<li><p>__tcfapi("ping") output</p> <pre>' + JSON.stringify({pingData:pingData}, null, 4) + '</pre></li>');
         if (pingData.cmpLoaded) {
           clearInterval(tcfapi_interval);
         }
       });
-    }, 100);
+    };
+    var tcfapi_interval = setInterval(ping_check, 100);
+    ping_check();
     window.__tcfapi('addEventListener', 2, function(tcfData, success){
       $messages.append('<li><p>__tcfapi("addEventListener") output</p> <pre>' + JSON.stringify({tcfData:tcfData, success:success}, null, 4) + '</pre></li>');
     });
