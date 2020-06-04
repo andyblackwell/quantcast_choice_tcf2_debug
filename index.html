@@ -182,7 +182,7 @@
           clearInterval(tcfapi_interval);
         }
       });
-    }, 10);
+    }, 100);
     window.__tcfapi('addEventListener', 2, function(tcfData, success){
       console.log('TESTING addEventListener', {tcfData, success});
       $messages.append('<div>__tcfapi("addEventListener") output <pre>' + JSON.stringify({tcfData:tcfData, success:success}, null, 4) + '</pre></div>');
