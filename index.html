@@ -219,14 +219,22 @@
     });
     var $messages = jQuery('#messages');
     var ping_check = function(){
-      window.__tcfapi('ping', 2, function(pingData){
-        $messages.append('<li><p>__tcfapi("ping") response</p> <pre>' + JSON.stringify({pingData:pingData}, null, 4) + '</pre></li>');
-      });
+        window.__tcfapi('ping', 2, function(pingData){
+            $messages.append('<li><p>__tcfapi("ping") response</p> <pre>' + JSON.stringify({pingData:pingData}, null, 4) + '</pre></li>');
+        });
+    };
+    var getTCData = function(){
+        window.__tcfapi('getTCData', 2, function(tcfData){
+            $messages.append('<li><p>__tcfapi("getTCData") response</p> <pre>' + JSON.stringify({tcfData:tcfData}, null, 4) + '</pre></li>');
+        });
     };
     ping_check();
     window.__tcfapi('addEventListener', 2, function(tcfData, success){
       $messages.append('<li><p>__tcfapi("addEventListener") response</p> <pre>' + JSON.stringify({tcfData:tcfData, success:success}, null, 4) + '</pre></li>');
       ping_check();
+      if (success && (tcfData.eventStatus == 'tcloaded' || tcfData.eventStatus == 'useractioncomplete')) {
+          getTCData();
+      }
     });
   })()
   </script>
